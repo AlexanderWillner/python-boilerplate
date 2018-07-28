@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/AlexanderWillner/python-boilerplate.svg?branch=master)](https://travis-ci.org/AlexanderWillner/python-boilerplate) [![Coverage Status](https://coveralls.io/repos/github/AlexanderWillner/python-boilerplate/badge.svg?branch=master)](https://coveralls.io/github/AlexanderWillner/python-boilerplate?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/AlexanderWillner/python-boilerplate/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/AlexanderWillner/python-boilerplate/?branch=master)
+
 # Python 2.7 Boiler Plate
 
 Simple Python boiler plate project. Main features:
