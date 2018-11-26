@@ -38,7 +38,7 @@ class Greeter(object):
     @log
     def print_message(self):
         """Function description."""
-        print self.message
+        print (self.message)
 
 
 def main(args):
