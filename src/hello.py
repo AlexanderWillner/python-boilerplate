@@ -3,6 +3,8 @@
 
 """Module documentation goes here."""
 
+from __future__ import print_function
+
 __author__ = "First Last"
 __copyright__ = "Copyright 2018, First Last"
 __credits__ = ["C D", "A B"]
@@ -25,7 +27,7 @@ def log(function):
     return inner
 
 
-class Greeter(object):
+class Greeter():
     """Example function with types documented in the docstring."""
 
     def __init__(self):
@@ -38,7 +40,7 @@ class Greeter(object):
     @log
     def print_message(self):
         """Function description."""
-        print (self.message)
+        print(self.message)
 
 
 def main(args):
