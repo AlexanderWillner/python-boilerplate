@@ -26,9 +26,9 @@ doc:
 	@pydoc src.hello
 
 clean:
-	@rm $(SRC_CORE)/*.pyc
+	@rm -f $(SRC_CORE)/*.pyc
 	@rm -rf $(SRC_CORE)/__pycache__
-	@rm $(SRC_TEST)/*.pyc
+	@rm -f $(SRC_TEST)/*.pyc
 	@rm -rf $(SRC_TEST)/__pycache__
 
 code-style:
