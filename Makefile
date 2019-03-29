@@ -1,4 +1,5 @@
 SRC_CORE=src
+SRC_TEST=tests
 
 help:
 	@echo "Some available commands:"
@@ -18,7 +19,7 @@ run:
 
 test:
 	@type coverage >/dev/null 2>&1 || (echo "Run 'pip install coverage' first." >&2 ; exit 1)
-	@coverage run --source . -m tests.test_hello
+	@coverage run --source . -m $(SRC_TEST).test_hello
 	@coverage report
 
 doc:
@@ -26,6 +27,9 @@ doc:
 
 clean:
 	@rm $(SRC_CORE)/*.pyc
+	@rm -rf $(SRC_CORE)/__pycache__
+	@rm $(SRC_TEST)/*.pyc
+	@rm -rf $(SRC_TEST)/__pycache__
 
 code-style:
 	@type pycodestyle >/dev/null 2>&1 || (echo "Run 'pip install pycodestyle' first." >&2 ; exit 1)
