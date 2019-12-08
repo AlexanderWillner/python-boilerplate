@@ -1,5 +1,8 @@
 SRC_CORE=src
 SRC_TEST=tests
+PYTHON=python3
+PYDOC=pydoc3
+PIP=pip3
 
 help:
 	@echo "Some available commands:"
@@ -15,7 +18,7 @@ help:
 	@echo " * feedback     - Create a GitHub issue."
 
 run:
-	@python $(SRC_CORE)/hello.py -f -n Foo test
+	@$(PYTHON) $(SRC_CORE)/hello.py -f -n Foo test
 
 test:
 	@type coverage >/dev/null 2>&1 || (echo "Run 'pip install coverage' first." >&2 ; exit 1)
@@ -23,7 +26,7 @@ test:
 	@coverage report
 
 doc:
-	@pydoc src.hello
+	@$(PYDOC) src.hello
 
 clean:
 	@rm -f $(SRC_CORE)/*.pyc
@@ -48,12 +51,12 @@ code-count:
 	@cloc $(SRC_CORE)
 
 deps-update:
-	@type pur >/dev/null 2>&1 || (echo "Run 'pip install pur' first." >&2 ; exit 1)
+	@type pur >/dev/null 2>&1 || (echo "Run 'pip3 install pur' first." >&2 ; exit 1)
 	@pur -r requirements.txt
 
 deps-install:
-	@type pip >/dev/null 2>&1 || (echo "Run 'curl https://bootstrap.pypa.io/get-pip.py|sudo python' first." >&2 ; exit 1)
-	@pip install -r requirements.txt
+	@type $(PIP) >/dev/null 2>&1 || (echo "Run 'curl https://bootstrap.pypa.io/get-pip.py|sudo python3' first." >&2 ; exit 1)
+	@$(PIP) install -r requirements.txt
 
 feedback:
 	@open https://github.com/AlexanderWillner/python-boilerplate/issues
