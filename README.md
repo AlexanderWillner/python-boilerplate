@@ -1,17 +1,18 @@
-[![Build Status](https://github.com/alexanderwillner/python-boilerplate/workflows/Build-Test/badge.svg)](https://github.com/AlexanderWillner/python-boilerplate/actions) [![Build Status](https://travis-ci.org/AlexanderWillner/python-boilerplate.svg?branch=master)](https://travis-ci.org/AlexanderWillner/python-boilerplate) [![Coverage Status](https://coveralls.io/repos/github/AlexanderWillner/python-boilerplate/badge.svg?branch=master)](https://coveralls.io/github/AlexanderWillner/python-boilerplate?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/AlexanderWillner/python-boilerplate/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/AlexanderWillner/python-boilerplate/?branch=master)
-
 # Python 3 Boiler Plate
 
 Simple Python boiler plate project. Main features:
- * Main application with parameter parsing and logger (via decorator).
- * Dynamic tests via unit tests and test coverage.
- * Static tests via pycodestyle, pyflakes, and pyline.
- * Requirements management.
- * Basic make, .gitignore and other configuration files.
+
+* Main application with parameter parsing and logger (via decorator).
+* Dynamic tests via unit tests and test coverage.
+* Static tests via pycodestyle, pyflakes, and pyline.
+* Requirements management.
+* Basic make, .gitignore and other configuration files.
+
+[![Build Status](https://github.com/alexanderwillner/python-boilerplate/workflows/Build-Test/badge.svg)](https://github.com/AlexanderWillner/python-boilerplate/actions) [![Build Status](https://travis-ci.org/AlexanderWillner/python-boilerplate.svg?branch=master)](https://travis-ci.org/AlexanderWillner/python-boilerplate) [![Coverage Status](https://coveralls.io/repos/github/AlexanderWillner/python-boilerplate/badge.svg?branch=master)](https://coveralls.io/github/AlexanderWillner/python-boilerplate?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/AlexanderWillner/python-boilerplate/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/AlexanderWillner/python-boilerplate/?branch=master)
 
 ## Examples
 
-```
+```bash
 $ make
 Some available commands:
  * run          - Run code.
@@ -26,7 +27,7 @@ Some available commands:
  * feedback     - Create a GitHub issue.
 ```
 
-```
+```bash
 $ make test
 [D 180728 04:10:10 hello:23] <function print_message at 0x107867aa0>
 Hello world!
