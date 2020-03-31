@@ -10,6 +10,7 @@ help:
 	@echo " * test         - Run unit tests and test coverage."
 	@echo " * doc          - Document code (pydoc)."
 	@echo " * clean        - Cleanup (e.g. pyc files)."
+	@echo " * auto-style   - Automatially style code (autopep8)."
 	@echo " * code-style   - Check code style (pycodestyle)."
 	@echo " * code-lint    - Check code lints (pyflakes, pyline)."
 	@echo " * code-count   - Count code lines (cloc)."
@@ -33,6 +34,10 @@ clean:
 	@rm -rf $(SRC_CORE)/__pycache__
 	@rm -f $(SRC_TEST)/*.pyc
 	@rm -rf $(SRC_TEST)/__pycache__
+
+auto-style:
+	@type autopep8 >/dev/null 2>&1 || (echo "Run 'pip install autopep8' first." >&2 ; exit 1)
+	@autopep8 -i -r $(SRC_CORE)
 
 code-style:
 	@type pycodestyle >/dev/null 2>&1 || (echo "Run 'pip install pycodestyle' first." >&2 ; exit 1)
