@@ -12,10 +12,11 @@ help:
 	@echo " * clean        - Cleanup (e.g. pyc files)."
 	@echo " * auto-style   - Automatially style code (autopep8)."
 	@echo " * code-style   - Check code style (pycodestyle)."
-	@echo " * code-lint    - Check code lints (pyflakes, pyline)."
+	@echo " * code-lint    - Check code lints (pyflakes, pyline, flake8)."
 	@echo " * code-count   - Count code lines (cloc)."
 	@echo " * deps-install - Install dependencies (see requirements.txt)."
-	@echo " * deps-update  - Update dependencies (via pur)."
+	@echo " * deps-update  - Update dependencies (pur)."
+	@echo " * deps-create  - Create dependencies (pipreqs)."
 	@echo " * feedback     - Create a GitHub issue."
 
 run:
@@ -62,6 +63,10 @@ deps-update:
 deps-install:
 	@type $(PIP) >/dev/null 2>&1 || (echo "Run 'curl https://bootstrap.pypa.io/get-pip.py|sudo python3' first." >&2 ; exit 1)
 	@$(PIP) install -r requirements.txt
+
+deps-create:
+	@type pipreqs >/dev/null 2>&1 || (echo "Run 'pip3 install pipreqs' first." >&2 ; exit 1)
+	@pipreqs --use-local --force .
 
 feedback:
 	@open https://github.com/AlexanderWillner/python-boilerplate/issues
