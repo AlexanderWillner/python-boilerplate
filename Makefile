@@ -23,7 +23,7 @@ run:
 	@$(PYTHON) $(SRC_CORE)/hello.py -f -n Foo test
 
 test:
-	@type coverage >/dev/null 2>&1 || (echo "Run 'pip install coverage' first." >&2 ; exit 1)
+	@type coverage >/dev/null 2>&1 || (echo "Run '$(PIP) install coverage' first." >&2 ; exit 1)
 	@coverage run --source . -m $(SRC_TEST).test_hello
 	@coverage report
 
@@ -37,17 +37,17 @@ clean:
 	@rm -rf $(SRC_TEST)/__pycache__
 
 auto-style:
-	@type autopep8 >/dev/null 2>&1 || (echo "Run 'pip install autopep8' first." >&2 ; exit 1)
+	@type autopep8 >/dev/null 2>&1 || (echo "Run '$(PIP) install autopep8' first." >&2 ; exit 1)
 	@autopep8 -i -r $(SRC_CORE)
 
 code-style:
-	@type pycodestyle >/dev/null 2>&1 || (echo "Run 'pip install pycodestyle' first." >&2 ; exit 1)
+	@type pycodestyle >/dev/null 2>&1 || (echo "Run '$(PIP) install pycodestyle' first." >&2 ; exit 1)
 	@pycodestyle --max-line-length=80 $(SRC_CORE)
 
 code-lint:
-	@type pyflakes >/dev/null 2>&1 || (echo "Run 'pip install pyflakes' first." >&2 ; exit 1)
-	@type pylint >/dev/null 2>&1 || (echo "Run 'pip install pylint' first." >&2 ; exit 1)
-	@type flake8 >/dev/null 2>&1 || (echo "Run 'pip install flake8' first." >&2 ; exit 1)
+	@type pyflakes >/dev/null 2>&1 || (echo "Run '$(PIP) install pyflakes' first." >&2 ; exit 1)
+	@type pylint >/dev/null 2>&1 || (echo "Run '$(PIP) install pylint' first." >&2 ; exit 1)
+	@type flake8 >/dev/null 2>&1 || (echo "Run '$(PIP) install flake8' first." >&2 ; exit 1)
 	@pyflakes $(SRC_CORE)
 	@pylint $(SRC_CORE)
 	@flake8 --max-complexity 10 $(SRC_CORE)
@@ -57,7 +57,7 @@ code-count:
 	@cloc $(SRC_CORE)
 
 deps-update:
-	@type pur >/dev/null 2>&1 || (echo "Run 'pip3 install pur' first." >&2 ; exit 1)
+	@type pur >/dev/null 2>&1 || (echo "Run '$(PIP) install pur' first." >&2 ; exit 1)
 	@pur -r requirements.txt
 
 deps-install:
@@ -65,7 +65,7 @@ deps-install:
 	@$(PIP) install -r requirements.txt
 
 deps-create:
-	@type pipreqs >/dev/null 2>&1 || (echo "Run 'pip3 install pipreqs' first." >&2 ; exit 1)
+	@type pipreqs >/dev/null 2>&1 || (echo "Run '$(PIP) install pipreqs' first." >&2 ; exit 1)
 	@pipreqs --use-local --force .
 
 feedback:
