@@ -1,5 +1,6 @@
 SRC_CORE=src
 SRC_TEST=tests
+SRC_RESOURCES=resources
 PYTHON=python3
 PYDOC=pydoc3
 PIP=pip3
@@ -14,6 +15,9 @@ help:
 	@echo " * code-style   - Check code style (pycodestyle)."
 	@echo " * code-lint    - Check code lints (pyflakes, pyline, flake8)."
 	@echo " * code-count   - Count code lines (cloc)."
+	@echo " * css-lint     - Check CSS styke lints (csslint)."
+	@echo " * js-lint      - Check JS code lints (jslint)."
+	@echo " * html-lint    - Check HTML file lints (tidy)."
 	@echo " * deps-install - Install dependencies (see requirements.txt)."
 	@echo " * deps-update  - Update dependencies (pur)."
 	@echo " * deps-create  - Create dependencies (pipreqs)."
@@ -55,6 +59,20 @@ code-lint:
 code-count:
 	@type cloc >/dev/null 2>&1 || (echo "Run 'brew install cloc' first." >&2 ; exit 1)
 	@cloc $(SRC_CORE)
+
+css-lint:
+	@type csslint >/dev/null 2>&1 || (echo "Run 'npm install -g csslint' first." >&2 ; exit 1)
+	@csslint --format=compact $(SRC_RESOURCES)/*.css
+
+js-lint:
+	@type jslint >/dev/null 2>&1 || (echo "Run 'npm install -g jslint' first." >&2 ; exit 1)
+	@jslint $(SRC_RESOURCES)/*.js
+
+html-lint:
+	@type tidy >/dev/null 2>&1 || (echo "Run 'brew install tidy' first." >&2 ; exit 1)
+	@tidy -qe $(SRC_RESOURCES)/*.html
+
+lint: code-style code-lint css-lint js-lint html-lint
 
 deps-update:
 	@type pur >/dev/null 2>&1 || (echo "Run '$(PIP) install pur' first." >&2 ; exit 1)
