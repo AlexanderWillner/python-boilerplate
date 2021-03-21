@@ -32,7 +32,7 @@ test:
 	@coverage report
 
 doc:
-	@$(PYDOC) src.hello
+	@$(PYDOC) src
 
 clean:
 	@rm -f $(SRC_CORE)/*.pyc
@@ -41,50 +41,54 @@ clean:
 	@rm -rf $(SRC_TEST)/__pycache__
 
 auto-style:
-	@type autopep8 >/dev/null 2>&1 || (echo "Run '$(PIP) install autopep8' first." >&2 ; exit 1)
-	@autopep8 -i -r $(SRC_CORE)
+	@if type autopep8 >/dev/null 2>&1 ; then autopep8 -i -r $(SRC_CORE) ; \
+	 else echo "SKIPPED. Run '$(PIP) install autopep8' first." >&2 ; fi
 
 code-style:
-	@type pycodestyle >/dev/null 2>&1 || (echo "Run '$(PIP) install pycodestyle' first." >&2 ; exit 1)
-	@pycodestyle --max-line-length=80 $(SRC_CORE)
-
-code-lint:
-	@type pyflakes >/dev/null 2>&1 || (echo "Run '$(PIP) install pyflakes' first." >&2 ; exit 1)
-	@type pylint >/dev/null 2>&1 || (echo "Run '$(PIP) install pylint' first." >&2 ; exit 1)
-	@type flake8 >/dev/null 2>&1 || (echo "Run '$(PIP) install flake8' first." >&2 ; exit 1)
-	@pyflakes $(SRC_CORE)
-	@pylint $(SRC_CORE)
-	@flake8 --max-complexity 10 $(SRC_CORE)
+	@if type pycodestyle >/dev/null 2>&1 ; then pycodestyle --max-line-length=80 $(SRC_CORE) ; \
+	 else echo "SKIPPED. Run '$(PIP) install pycodestyle' first." >&2 ; fi
 
 code-count:
-	@type cloc >/dev/null 2>&1 || (echo "Run 'brew install cloc' first." >&2 ; exit 1)
-	@cloc $(SRC_CORE)
+	@if type cloc >/dev/null 2>&1 ; then cloc $(SRC_CORE) ; \
+	 else echo "SKIPPED. Run 'brew install cloc' first." >&2 ; fi
+
+code-lint:
+	@if type pyflakes >/dev/null 2>&1 ; then pyflakes $(SRC_CORE) ; \
+	 else echo "SKIPPED. Run '$(PIP) install pyflakes' first." >&2 ; fi
+	@if type pylint >/dev/null 2>&1 ; then pylint $(SRC_CORE) ; \
+	 else echo "SKIPPED. Run '$(PIP) install pylint' first." >&2 ; fi
+	@if type flake8 >/dev/null 2>&1 ; then flake8 --max-complexity 10 $(SRC_CORE) ; \
+	 else echo "SKIPPED. Run '$(PIP) install flake8' first." >&2 ; fi
+	@if type pyright >/dev/null 2>&1 ; then pyright $(SRC_CORE) ; \
+	 else echo "SKIPPED. Run 'npm install -f pyright' first." >&2 ; fi
+	@if type mypy >/dev/null 2>&1 ; then mypy --ignore-missing-imports $(SRC_CORE) ; \
+	 else echo "SKIPPED. Run '$(PIP) install mypy' first." >&2 ; fi
 
 css-lint:
-	@type csslint >/dev/null 2>&1 || (echo "Run 'npm install -g csslint' first." >&2 ; exit 1)
-	@csslint --format=compact $(SRC_RESOURCES)/*.css
+	@if type csslint >/dev/null 2>&1 ; then csslint --format=compact $(SRC_RESOURCES)/*.css ; \
+	 else echo "SKIPPED. Run 'npm install -g csslint' first." >&2 ; fi
 
 js-lint:
-	@type jslint >/dev/null 2>&1 || (echo "Run 'npm install -g jslint' first." >&2 ; exit 1)
-	@jslint $(SRC_RESOURCES)/*.js
+	@if type jslint >/dev/null 2>&1 ; then jslint $(SRC_RESOURCES)/*.js ; \
+	 else echo "SKIPPED. Run 'npm install -g jslint' first." >&2 ; fi
 
 html-lint:
-	@type tidy >/dev/null 2>&1 || (echo "Run 'brew install tidy' first." >&2 ; exit 1)
-	@tidy -qe $(SRC_RESOURCES)/*.html
+	@if type tidy >/dev/null 2>&1 ; then tidy -qe $(SRC_RESOURCES)/*.html ; \
+	 else echo "SKIPPED. Run 'brew install tidy' first." >&2 ; fi
 
 lint: code-style code-lint css-lint js-lint html-lint
 
 deps-update:
-	@type pur >/dev/null 2>&1 || (echo "Run '$(PIP) install pur' first." >&2 ; exit 1)
-	@pur -r requirements.txt
+	@if type pur >/dev/null 2>&1 ; then pur -r requirements.txt ; \
+	 else echo "SKIPPED. Run '$(PIP) install pur' first." >&2 ; fi
 
 deps-install:
 	@type $(PIP) >/dev/null 2>&1 || (echo "Run 'curl https://bootstrap.pypa.io/get-pip.py|sudo python3' first." >&2 ; exit 1)
 	@$(PIP) install -r requirements.txt
 
 deps-create:
-	@type pipreqs >/dev/null 2>&1 || (echo "Run '$(PIP) install pipreqs' first." >&2 ; exit 1)
-	@pipreqs --use-local --force .
+	@if type pipreqs >/dev/null 2>&1 ; then pipreqs --use-local --force . ; \
+	 else echo "SKIPPED. Run '$(PIP) install pipreqs' first." >&2 ; fi
 
 feedback:
 	@open https://github.com/AlexanderWillner/python-boilerplate/issues
