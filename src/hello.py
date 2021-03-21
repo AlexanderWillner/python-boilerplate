@@ -33,7 +33,7 @@ class Greeter():
     def __init__(self):
         self.message = 'Hello world!'
 
-    def set_message(self, message):
+    def set_message(self, message: str):
         """Function description."""
         self.message = message
 
@@ -43,7 +43,7 @@ class Greeter():
         print(self.message)
 
 
-def main(args):
+def main(args: argparse.Namespace):
     """ Main entry point of the app """
     Greeter().print_message()
     logger.info(args)
